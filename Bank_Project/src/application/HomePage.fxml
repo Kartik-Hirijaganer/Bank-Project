@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F6A90E;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePage">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3B4A89;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #444944 #444944;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="44.0" prefWidth="212.0" text="Home Page" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="421.0" style="-fx-background-color: #F6A90E;">
+                     <HBox.margin>
+                        <Insets left="2.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <VBox prefHeight="290.0" prefWidth="142.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="149.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true">
+	                  <image>
+                        <Image url="@logo.jpg" />
+	                  </image>
+	               </ImageView>
+               </children></VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Edit" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Button fx:id="withdraw" mnemonicParsing="false" onAction="#remove" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Withdraw" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="AdDetails" mnemonicParsing="false" onAction="#details" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Add Details" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="deposit" mnemonicParsing="false" onAction="#add" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Deposit" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #45EA3D;" text="Loan" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Button fx:id="logout" mnemonicParsing="false" onAction="#out" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #ff4300;" text="Logout" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
