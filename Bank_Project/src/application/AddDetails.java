@@ -1,8 +1,7 @@
 package application;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
+import java.sql.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,13 +30,14 @@ public class AddDetails {
 	Button clear;
 	
 	String query;
-	                           //Getting data from AddDetails
+	Main m = new Main();
+	                         //Getting data from AddDetails
 	public void addDetails() throws SQLException{	
-		int income = Integer.parseInt(i.getText());
+		int money = Integer.parseInt(i.getText());
 		int pincode = Integer.parseInt(p.getText());
 		String organisation = org.getText();
 		String email = e.getText();
-		query = "("+"'"+pincode+"'"+","+"'"+income+"'"+","+"'"+Login.password+"'"+","+"'"+email+"'"+","+"'"+organisation+"'"+")"; 
+		query = "pincode="+pincode+",email='"+email+"',organisation='"+organisation+"',money="+money;
 		addQuery();
 	}
 	
@@ -65,19 +65,20 @@ public class AddDetails {
 	}
 	
 	public void addQuery() throws SQLException{
+		Connection myConn = m.getConnection();
+		Statement myStmt = myConn.createStatement();
 		try {
-			String sql = "insert into customer(firstname,lastname,emailId,pasword,dateOfBirth,gender)"+
-					      "values"+ query+";";
-			Main.myStmt=Main.myConn.createStatement();
-			Main.myStmt.executeUpdate(sql);
+			String sql = "update customer set "+query+" where pasword='"+Login.getPassword()+"';";
+			myStmt=myConn.createStatement();
+			myStmt.executeUpdate(sql);
 			System.out.println("Data Successfully added.");
 		}
 		catch (Exception exc) {
 			exc.printStackTrace();
 		}
 		finally {
-			if (Main.myStmt != null) {
-				Main.myStmt.close();
+			if (myStmt != null) {
+				myStmt.close();
 			}
 		}	
 	}

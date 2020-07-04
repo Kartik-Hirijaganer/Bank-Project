@@ -45,13 +45,14 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Edit" textFill="WHITE">
+                        <Button fx:id="moneyTransfer" mnemonicParsing="false" onAction="#moneyTransfer" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Transfer" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="100.0" />
                            </HBox.margin>
                            <font>
                               <Font size="18.0" />
-                           </font></Label>
+                           </font>
+                        </Button>
                         <Button fx:id="withdraw" mnemonicParsing="false" onAction="#remove" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #49ACF1;" text="Withdraw" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
@@ -77,13 +78,14 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #45EA3D;" text="Loan" textFill="WHITE">
+                        <Button fx:id="reset" mnemonicParsing="false" onAction="#resetPass" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #45EA3D;" text="Resrt pass.." textFill="WHITE">
                            <HBox.margin>
                               <Insets right="100.0" />
                            </HBox.margin>
                            <font>
                               <Font size="18.0" />
-                           </font></Label>
+                           </font>
+                        </Button>
                         <Button fx:id="logout" mnemonicParsing="false" onAction="#out" prefHeight="41.0" prefWidth="115.0" style="-fx-background-color: #ff4300;" text="Logout" textFill="WHITE">
                            <font>
                               <Font size="18.0" />

@@ -2,9 +2,7 @@ package application;
 	
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -12,10 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class Main extends Application {
-	public static Connection myConn = null;
-	public static Statement myStmt;
-	public static ResultSet myRs;
-
+	//--module-path D:\JFx\javafx-sdk-11.0.2\lib\  --add-modules=javafx.controls,javafx.fxml//
+	//Add user lib JavaFx, them run as configuration-> Arguments->vm arguments->paste the above path.
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -28,12 +25,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) throws SQLException{
-		myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "BankProject" , "BankProject");
-		System.out.println("Database connection successful!\n");
-//		Statement myStmt = myConn.createStatement();
-//		ResultSet myRs = null;
-		
+	public static void main(String[] args){
 		launch(args);
+	}
+	public Connection getConnection() throws SQLException {
+		Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "BankProject" , "BankProject");
+		return myConn;
 	}
 }

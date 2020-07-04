@@ -80,7 +80,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="127.0" text="Income:" textFill="WHITE">
+                        <Label prefHeight="35.0" prefWidth="127.0" text="Money:" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>

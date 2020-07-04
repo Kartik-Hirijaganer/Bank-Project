@@ -20,6 +20,10 @@ public class HomePage {
 	Button withdraw;
 	@FXML
 	Button deposit;
+	@FXML
+	Button moneyTransfer;
+	@FXML
+	Button reset;
 	
 	public void details(ActionEvent event) throws IOException{
 		System.out.println("success");
@@ -52,6 +56,22 @@ public class HomePage {
         Scene scene4 = new Scene(view4);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene4);
+        window.show();
+	}
+	
+	public void moneyTransfer(ActionEvent event) throws IOException{
+		Parent view5 = FXMLLoader.load(getClass().getResource("MoneyTransfer.fxml"));
+        Scene scene5 = new Scene(view5);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene5);
+        window.show();
+	}
+	
+	public void resetPass(ActionEvent event)throws IOException{
+		Parent view5 = FXMLLoader.load(getClass().getResource("ResetPass.fxml"));
+        Scene scene5 = new Scene(view5);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene5);
         window.show();
 	}
 	

@@ -1,8 +1,7 @@
 package application;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,7 +18,7 @@ public class Login {
 	@FXML
 	TextField u;
 	@FXML
-	TextField p;
+	PasswordField p;
 	@FXML
 	Button submit;
 	@FXML
@@ -26,13 +26,20 @@ public class Login {
 	@FXML
 	Button clickMe;
 	
-	String username;
-	static String password;
+	private static String username;
+	private static String password;
+	Main m = new Main();
 	
+	public static String getPassword() {
+		return password;
+	}
+	public static String getUsername() {
+		return username;
+	}
 	
 	public void clear() {                        //Form clear function.
 		u.setText("");
-		p.setText("");
+		p.setText(null);
 	}
 	
 	public void addUser(ActionEvent event) throws IOException {
@@ -66,10 +73,11 @@ public class Login {
 	}
 	                                        //validating credentials
 	public boolean validate(String user,String pass) throws SQLException {    
+		Connection myConn = m.getConnection();
+		Statement myStmt = myConn.createStatement();
 		ResultSet myRs = null;
-		Main.myStmt = Main.myConn.createStatement();
 		try {
-				myRs = Main.myStmt.executeQuery("select pasword from customer where firstname='"+user+"';");
+				myRs = myStmt.executeQuery("select pasword from customer where username='"+user+"';");
 				myRs.next();
 				if(myRs.getString("pasword").equals(pass))
 					return true;
@@ -84,8 +92,8 @@ public class Login {
 				myRs.close();
 			}
 			
-			if (Main.myStmt != null) {
-				Main.myStmt.close();
+			if (myStmt != null) {
+				myStmt.close();
 			}
 		}
 		return false;

@@ -1,7 +1,10 @@
 package application;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
@@ -25,6 +28,8 @@ public class SignUp {
 	@FXML
 	TextField email;
 	@FXML
+	TextField username;
+	@FXML
 	TextField password;
 	@FXML
 	DatePicker dob;
@@ -36,7 +41,7 @@ public class SignUp {
 	RadioButton male;
 	@FXML
 	RadioButton female;
-	
+	Main m = new Main();
 
 	@FXML    	//display successful window on clicking submit.
     private void onSubmit(ActionEvent event)throws IOException, InterruptedException, SQLException{
@@ -66,6 +71,7 @@ public class SignUp {
 		String first = firstName.getText();
 		String last = lastName.getText();
 		String emailid = email.getText();
+		String user = username.getText();
 		String pass = password.getText();		
 		
 		LocalDate d = dob.getValue();    //Getting date value
@@ -77,21 +83,24 @@ public class SignUp {
 		else if(female.isSelected())
 			gender = "F";
 		else
-			System.out.println("Enter gender.");		
-
+			System.out.println("Enter gender.");	
+		
+		Connection myConn = m.getConnection();
+		Statement myStmt = myConn.createStatement();
 		try {
-			String query = "("+"'"+first+"'"+","+"'"+last+"'"+","+"'"+emailid+"'"+","+"'"+pass+"'"+","+"'"+date+"'"+","+"'"+gender+"'"+")";
-			String sql = "insert into income(pin,income,pasword,email,organisation) values"+query+";";
-			Main.myStmt=Main.myConn.createStatement();
-			Main.myStmt.executeUpdate(sql);
+			
+			String query = "('"+first+"','"+last+"','"+emailid+"','"+user+"','"+pass+"','"+date+"','"+gender+"');";
+			String sql = "insert into customer(firstname,lastname,email,username,pasword,dateOfBirth,gender) values"+query;
+			myStmt=myConn.createStatement();
+			myStmt.executeUpdate(sql);
 			System.out.println("Data Successfully added.");
 		}
 		catch (Exception exc) {
 			exc.printStackTrace();
 		}
 		finally {
-			if (Main.myStmt != null) {
-				Main.myStmt.close();
+			if (myStmt != null) {
+				myStmt.close();
 			}
 		}
 	}

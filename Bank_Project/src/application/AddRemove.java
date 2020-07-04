@@ -1,8 +1,8 @@
 package application;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.ResultSet;
+import java.sql.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,17 +27,21 @@ public class AddRemove {
 	
 	int amount=0;
 	String sql,query;
-	ResultSet myRs = null;
+	
+	Main m = new Main();
+	
 	public void addMoney(ActionEvent event) throws SQLException, IOException {
-		try {
+		Connection myConn = m.getConnection();
+		Statement myStmt = myConn.createStatement();
+		ResultSet myRs = null;
+		try {	
 			amount = Integer.parseInt(money.getText());
-			Main.myStmt=Main.myConn.createStatement();
-			query = "select income from income where pasword='"+Login.password+"';";
-			myRs = Main.myStmt.executeQuery(query);
+			query = "select money from customer where pasword='"+Login.getPassword()+"';";
+			myRs = myStmt.executeQuery(query);
 			myRs.next();
-			amount += Integer.parseInt(myRs.getString("income"));
-			sql = "update income set income="+amount+" where pasword='"+Login.password+"';";
-			Main.myStmt.executeUpdate(sql);
+			amount += Integer.parseInt(myRs.getString("money"));
+			sql = "update customer set money="+amount+" where pasword='"+Login.getPassword()+"';";
+			myStmt.executeUpdate(sql);
 			
 			//return to home page
 			Parent view1 = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
@@ -58,8 +62,8 @@ public class AddRemove {
 				myRs.close();
 			}
 			
-			if (Main.myStmt != null) {
-				Main.myStmt.close();
+			if (myStmt != null) {
+				myStmt.close();
 			}
 		}
 	}
@@ -69,15 +73,18 @@ public class AddRemove {
 	}
 	
 	public void removeMoney(ActionEvent event) throws SQLException, IOException {
+		Connection myConn = m.getConnection();
+		Statement myStmt = myConn.createStatement();
+		ResultSet myRs = null;
 		try {
-			Main.myStmt=Main.myConn.createStatement();
+			myStmt=myConn.createStatement();
 			amount = Integer.parseInt(money.getText());
-			query = "select income from income where pasword='"+Login.password+"';";
-			myRs=Main.myStmt.executeQuery(query);
+			query = "select money from customer where pasword='"+Login.getPassword()+"';";
+			myRs=myStmt.executeQuery(query);
 			myRs.next();
-			amount -= Integer.parseInt(myRs.getString("income"));
-			sql = "update income set income="+amount+" where pasword='"+Login.password+"';";
-			Main.myStmt.executeUpdate(sql);
+			amount -= Integer.parseInt(myRs.getString("money"));
+			sql = "update customer set money="+amount+" where pasword='"+Login.getPassword()+"';";
+			myStmt.executeUpdate(sql);
 			   
 			//return to home page
 			Parent view1 = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
@@ -98,8 +105,8 @@ public class AddRemove {
 				myRs.close();
 			}
 			
-			if (Main.myStmt != null) {
-				Main.myStmt.close();
+			if (myStmt != null) {
+				myStmt.close();
 			}
 		}
 	}
